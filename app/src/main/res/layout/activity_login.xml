@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/registrationTextView"
+            style="@style/login_header"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/login"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.26" />
+
+        <EditText
+            android:id="@+id/editTextPhone"
+            style="@style/phone_number"
+            android:layout_width="252dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="39dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:inputType="phone"
+            android:text="+996"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registrationTextView" />
+
+        <EditText
+            android:id="@+id/registrationPassword"
+            style="@style/small_text"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_weight="1"
+            android:ems="10"
+            android:gravity="center"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            app:layout_constraintEnd_toEndOf="@+id/editTextPhone"
+            app:layout_constraintStart_toStartOf="@+id/editTextPhone"
+            app:layout_constraintTop_toBottomOf="@+id/editTextPhone" />
+
+        <ImageView
+            android:id="@+id/show"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_margin="5dp"
+            app:layout_constraintEnd_toEndOf="@+id/registrationPassword"
+            app:layout_constraintTop_toTopOf="@+id/registrationPassword"
+            app:srcCompat="@drawable/ic_visible" />
+
+        <android.widget.Button
+            android:id="@+id/verifyButton"
+            style="@style/login_button"
+            android:background="@drawable/button_black"
+            android:text="@string/log_in"
+            android:textColor="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/registrationPassword" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

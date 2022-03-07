@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">OmelaWorkers</string>
+    <string name="log_in">войти</string>
+    <string name="login">вход</string>
+    <string name="password">пароль</string>
+    <string name="empty">" "</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="omela">omela</string>
+    <string name="orders">заказы</string>
+    <string name="new_order">НОВЫЙ ЗАКАЗ</string>
+    <string name="time">11:35</string>
+    <string name="phone_number">+996 000 123 456</string>
+    <string name="address_with_column">Адрес:</string>
+    <string name="branch_with_column">Филиал:</string>
+    <string name="address_hint">проспект Чингиза Айтматова 305, дом 45, кв. 45</string>
+    <string name="branch">проспект чуй 147/1.</string>
+    <string name="accepted">принял</string>
+    <string name="picked_up">забрал</string>
+    <string name="omw">в пути</string>
+    <string name="delivered">доставил</string>
+    <string name="finished">завершил</string>
+    <string name="order_info">информация о заказе</string>
+    <string name="name_hint">Каныкей Майрамбекова</string>
+    <string name="number_hint">+996 123 456 789</string>
+    <string name="log_out">выйти</string>
+</resources>
