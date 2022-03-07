@@ -9,7 +9,11 @@
         android:id="@+id/accountFragment"
         android:name="com.example.omelaworkers.courier.AccountFragment"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account" />
+        tools:layout="@layout/fragment_account" >
+        <action
+            android:id="@+id/action_accountFragment_to_salaryFragment"
+            app:destination="@id/salaryFragment" />
+    </fragment>
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.omelaworkers.courier.HomeFragment"
@@ -43,5 +47,13 @@
         <action
             android:id="@+id/action_completedOrderFragment_to_orderDetailsFragment"
             app:destination="@id/orderDetailsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/salaryFragment"
+        android:name="com.example.omelaworkers.courier.SalaryFragment"
+        android:label="SalaryFragment" >
+        <action
+            android:id="@+id/action_salaryFragment_to_accountFragment"
+            app:destination="@id/accountFragment" />
     </fragment>
 </navigation>
