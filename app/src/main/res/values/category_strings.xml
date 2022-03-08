@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="categories_array">
+        <item>МИНИМАЛИЗМ</item>
+        <item>ШЕББИ-ШИК</item>
+        <item>РУСТИК</item>
+        <item>ЛОФT</item>
+        <item>БОХО</item>
+    </string-array>
+</resources>

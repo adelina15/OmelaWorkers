@@ -56,7 +56,7 @@ class CurrentOrderFragment : Fragment() {
     }
     private fun init() {
         binding.apply {
-            currentOrdesRecyclerView.adapter = currentOrdersAdapter
+            currentOrdersRecyclerView.adapter = currentOrdersAdapter
         }
         currentOrdersAdapter.setList(currentOrdersList)
     }

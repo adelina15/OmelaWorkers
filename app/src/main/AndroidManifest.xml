@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OmelaWorkers">
         <activity
-            android:name=".FloristActivity"
+            android:name=".florist.FloristActivity"
             android:exported="false" />
         <activity
             android:name=".courier.CourierActivity"

@@ -1,5 +1,6 @@
 package com.example.omelaworkers
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Build
@@ -11,7 +12,9 @@ import android.view.View
 import android.view.Window
 import androidx.core.view.WindowInsetsControllerCompat
 import com.example.omelaworkers.courier.CourierActivity
+import com.example.omelaworkers.florist.FloristActivity
 
+@SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,7 +32,7 @@ class SplashActivity : AppCompatActivity() {
             // This method will be executed once the timer is over
             // Start your app main activity
 
-            startActivity(Intent(this, CourierActivity::class.java))
+            startActivity(Intent(this, FloristActivity::class.java))
 
             // close this activity
             finish()

@@ -72,7 +72,7 @@
 
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/profile_avatar"
+                    android:id="@+id/flowerImage"
                     android:layout_width="105dp"
                     android:layout_height="105dp"
                     android:layout_marginTop="8dp"
@@ -91,7 +91,7 @@
                     android:text="@string/name_hint"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/profile_avatar" />
+                    app:layout_constraintTop_toBottomOf="@+id/flowerImage" />
 
                 <TextView
                     android:id="@+id/textView20"

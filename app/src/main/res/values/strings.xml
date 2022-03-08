@@ -31,4 +31,21 @@
     <string name="branch4_address">г. Бишкек, Юнусалиева 160/1, 2 этаж.</string>
     <string name="this_month">за текущий месяц</string>
     <string name="sort">фильтр</string>
+    <string name="add_flower">добавить букет</string>
+    <string name="add_photo">добавить фото</string>
+    <string name="name">название</string>
+    <string name="price">цена</string>
+    <string name="save">сохранить</string>
+    <string name="bouquet_content">состав букета</string>
+    <string name="bouquet_description">описание букета</string>
+    <string name="bouquet_discount">скидка букета</string>
+    <string name="bouquet_height">высота букета</string>
+    <string name="bouquet_diameter">диаметр букета</string>
+    <string name="bouquet_price">цена букета</string>
+    <string name="bouquet_name">название букета</string>
+    <string name="description">описание</string>
+    <string name="discount">скидка</string>
+    <string name="content">состав</string>
+    <string name="height">высота</string>
+    <string name="diameter">диаметр</string>
 </resources>

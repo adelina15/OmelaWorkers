@@ -97,6 +97,12 @@
         <item name="android:textSize">18sp</item>
     </style>
 
+    <style name="add_flower_text">
+        <item name="fontFamily">@font/tinos</item>
+        <item name="android:textColor">@color/gray</item>
+        <item name="android:textSize">18sp</item>
+    </style>
+
     <style name="comments_text_bold">
         <item name="fontFamily">@font/tinos_bold</item>
         <item name="android:textColor">@color/black</item>
