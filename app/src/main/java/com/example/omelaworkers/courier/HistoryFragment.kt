@@ -24,7 +24,11 @@ class HistoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_history, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val adapter = TabLayoutAdapter(this)
         val viewPager = binding.viewPager
         val tabLayout = binding.tabLayout
@@ -41,23 +45,6 @@ class HistoryFragment : Fragment() {
                 }
             }
         }.attach()
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-        with(binding.toolbar) {
-            inflateMenu(R.menu.sort_menu)
-            setOnMenuItemClickListener {
-                when(it.itemId) {
-                    R.id.action_sort -> {
-                        Toast.makeText(requireContext(), "sort", Toast.LENGTH_SHORT).show()
-                        true
-                    }
-                    else -> false
-                }
-            }
-        }
     }
 
     override fun onDestroyView() {

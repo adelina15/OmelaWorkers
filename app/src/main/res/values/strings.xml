@@ -25,10 +25,10 @@
     <string name="log_out">выйти</string>
     <string name="salary">зарплата</string>
     <string name="branches_of_the_shop">филиалы магазинов</string>
-    <string name="branch1_address">г. Бишкек, Байтик Батыра 49, 1 этаж.</string>
-    <string name="branch2_address">г. Бишкек, Манаса 47, 2 этаж.</string>
-    <string name="branch3_address">г. Бишкек, проспект чуй 147/1, 1 этаж.</string>
-    <string name="branch4_address">г. Бишкек, Юнусалиева 160/1, 2 этаж.</string>
+    <string name="branch1_address">Байтик Батыра 49, 1 этаж.</string>
+    <string name="branch2_address">Манаса 47, 2 этаж.</string>
+    <string name="branch3_address">проспект чуй 147/1, 1 этаж.</string>
+    <string name="branch4_address">Юнусалиева 160/1, 2 этаж.</string>
     <string name="this_month">за текущий месяц</string>
     <string name="sort">фильтр</string>
     <string name="add_flower">добавить букет</string>
@@ -48,4 +48,5 @@
     <string name="content">состав</string>
     <string name="height">высота</string>
     <string name="diameter">диаметр</string>
+    <string name="new_orders">новые заказы</string>
 </resources>

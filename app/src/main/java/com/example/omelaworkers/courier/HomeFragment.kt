@@ -67,7 +67,7 @@ class HomeFragment : Fragment(), Delegates.OrderClicked {
     }
 
     override fun onItemClick(order: NewOrder) {
-        val action = HomeFragmentDirections.actionHomeFragmentToOrderDetailsFragment()
+        val action = HomeFragmentDirections.actionHomeFragmentToOrderDetailsFragment("новый заказ")
         findNavController().navigate(action)
     }
 }

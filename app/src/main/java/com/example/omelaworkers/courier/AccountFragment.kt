@@ -1,5 +1,6 @@
 package com.example.omelaworkers.courier
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -9,8 +10,10 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
+import com.example.omelaworkers.LoginActivity
 import com.example.omelaworkers.R
 import com.example.omelaworkers.databinding.FragmentAccountBinding
+import com.example.omelaworkers.florist.FloristActivity
 
 class AccountFragment : Fragment() {
     private var _binding: FragmentAccountBinding? = null
@@ -49,7 +52,7 @@ class AccountFragment : Fragment() {
         builder.setTitle("вы действительно хотите выйти?")
 //        builder.setMessage("")
         builder.setPositiveButton("да") { _, _ ->
-            //
+            startActivity(Intent(requireContext(), LoginActivity::class.java))
         }
         builder.setNegativeButton("нет") { _, _ ->
             Toast.makeText(requireContext(),

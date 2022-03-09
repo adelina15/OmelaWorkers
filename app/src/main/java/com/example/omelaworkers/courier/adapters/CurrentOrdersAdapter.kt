@@ -9,10 +9,11 @@ import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.omelaworkers.R
+import com.example.omelaworkers.courier.Delegates
 import com.example.omelaworkers.courier.model.CurrentOrder
 import com.example.omelaworkers.databinding.CurrentOrderBinding
 
-class CurrentOrdersAdapter() :
+class CurrentOrdersAdapter(private val currentOrderClicker: Delegates.CurrentOrderClicked) :
     RecyclerView.Adapter<CurrentOrdersAdapter.CurrentOrdersHolder>() {
 
     private var list = mutableListOf<CurrentOrder>()
@@ -29,40 +30,40 @@ class CurrentOrdersAdapter() :
             newClientNumber.text = order.client_number
             newOrderTime.text = order.order_time
             newOrderBranch.text = order.branch_address
-            button.setOnClickListener {
-                if (status.text == "принял") {
-                    button.apply {
-                        background = ContextCompat.getDrawable(
-                            context,
-                            R.drawable.button_peach
-                        )
-                        isEnabled = true
-                    }
-                    button.text = "доставил"
-                    status.text = "в пути"
-                    order.order_status = "в пути"
-                    Log.i("finished", "${order.order_status} should be omw1")
-                }
-                else if (status.text == "в пути") {
-                    Log.i("finished", "${order.order_status} should be omw")
-                    button.apply {
-                        background = ContextCompat.getDrawable(
-                            context,
-                            R.drawable.button_green
-                        )
-                        isEnabled = true
-                    }
-                    button.text = "завершил"
-                    status.text = "доставил"
-                    order.order_status = "доставил"
-                    Log.i("finished", "${order.order_status} should be delivered")
-                }
-                else if (status.text == "доставил") {
-                    order.order_status = "завершил"
-                    //send to finished orders
-                    Log.i("finished", "${order.order_status} finished")
-                }
-            }
+//            button.setOnClickListener {
+//                if (status.text == "принял") {
+//                    button.apply {
+//                        background = ContextCompat.getDrawable(
+//                            context,
+//                            R.drawable.button_peach
+//                        )
+//                        isEnabled = true
+//                    }
+//                    button.text = "доставил"
+//                    status.text = "в пути"
+//                    order.order_status = "в пути"
+//                    Log.i("finished", "${order.order_status} should be omw1")
+//                }
+//                else if (status.text == "в пути") {
+//                    Log.i("finished", "${order.order_status} should be omw")
+//                    button.apply {
+//                        background = ContextCompat.getDrawable(
+//                            context,
+//                            R.drawable.button_green
+//                        )
+//                        isEnabled = true
+//                    }
+//                    button.text = "завершил"
+//                    status.text = "доставил"
+//                    order.order_status = "доставил"
+//                    Log.i("finished", "${order.order_status} should be delivered")
+//                }
+//                else if (status.text == "доставил") {
+//                    order.order_status = "завершил"
+//                    //send to finished orders
+//                    Log.i("finished", "${order.order_status} finished")
+//                }
+//            }
         }
     }
 
@@ -73,6 +74,9 @@ class CurrentOrdersAdapter() :
 
     override fun onBindViewHolder(holder: CurrentOrdersHolder, position: Int) {
         holder.bind(list[position])
+        holder.binding.layout.setOnClickListener {
+            currentOrderClicker.onItemClick(list[position])
+        }
     }
 
     override fun getItemCount(): Int {

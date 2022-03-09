@@ -19,6 +19,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.databinding.DataBindingUtil
 import com.example.omelaworkers.courier.CourierActivity
 import com.example.omelaworkers.databinding.ActivityLoginBinding
+import com.example.omelaworkers.florist.FloristActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -37,7 +38,13 @@ class LoginActivity : AppCompatActivity() {
         }
         binding.show.setOnClickListener { showHidePass(binding.show, binding.registrationPassword) }
         binding.verifyButton.setOnClickListener {
-            if (binding.editTextPhone.length() == 13 && binding.registrationPassword.text.isNotEmpty()){
+//            if (binding.editTextPhone.length() == 13 && binding.registrationPassword.text.isNotEmpty()){
+//                startActivity(Intent(this, CourierActivity::class.java))
+//            }
+            if (binding.editTextPhone.text.toString() == "+996700559950"){
+                startActivity(Intent(this, FloristActivity::class.java))
+            }
+            if (binding.editTextPhone.text.toString() == "+996707559950"){
                 startActivity(Intent(this, CourierActivity::class.java))
             }
         }

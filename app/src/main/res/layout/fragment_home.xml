@@ -34,7 +34,7 @@
                     style="@style/header_center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@string/omela" />
+                    android:text="@string/new_orders" />
 
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.AppBarLayout>

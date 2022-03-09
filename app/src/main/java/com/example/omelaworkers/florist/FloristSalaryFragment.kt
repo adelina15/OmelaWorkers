@@ -5,56 +5,93 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
+import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.example.omelaworkers.R
+import com.example.omelaworkers.courier.SalaryFragmentDirections
+import com.example.omelaworkers.courier.adapters.SalaryAdapter
+import com.example.omelaworkers.courier.model.Salary
+import com.example.omelaworkers.databinding.FragmentFloristSalaryBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [FloristSalaryFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class FloristSalaryFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
+    private var _binding: FragmentFloristSalaryBinding? = null
+    private val binding
+        get() = _binding!!
+    private val salaryAdapter = SalaryAdapter()
+    private val salaryList by lazy {
+        mutableListOf(
+            Salary(
+                "24.02.2022г.", 4, 990),
+            Salary("23.02.2022г.", 1, 290),
+            Salary("22.02.2022г.", 6, 1090),
+            Salary("21.02.2022г.", 3, 780),
+            Salary(
+                "20.02.2022г.",
+                2,
+                1900
+            ),
+            Salary(
+                "19.02.2022г.",
+                4,
+                2000
+            ),
+            Salary(
+                "18.02.2022г.",
+                4,
+                455
+            ),
+            Salary(
+                "17.02.2022г.",
+                4,
+                344
+            ),
+            Salary(
+                "16.02.2022г.",
+                5,
+                899
+            ),
+        )
     }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_florist_salary, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_florist_salary, container, false)
+        init()
+        return binding.root
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment FloristSalaryFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            FloristSalaryFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        with(binding.toolbar) {
+            setNavigationIcon(com.example.omelaworkers.R.drawable.ic_back_arrow)
+            setNavigationOnClickListener {
+                val action = FloristSalaryFragmentDirections.actionFloristSalaryFragmentToFloristAccountFragment()
+                findNavController().navigate(action)
             }
+        }
+        ArrayAdapter.createFromResource(
+            requireContext(),
+            R.array.filter_array,
+            android.R.layout.simple_spinner_item
+        ).also { adapter ->
+            // Specify the layout to use when the list of choices appears
+            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+            // Apply the adapter to the spinner
+            binding.salarySpinner2.adapter = adapter
+        }
+    }
+
+    private fun init() {
+        binding.salaryRecyclerView.adapter = salaryAdapter
+        salaryAdapter.setList(salaryList)
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

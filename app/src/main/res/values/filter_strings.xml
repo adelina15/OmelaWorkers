@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="filter_array">
+        <item>за текущий день</item>
+        <item>за текущий месяц</item>
+        <item>за 3 месяца</item>
+    </string-array>
+</resources>
