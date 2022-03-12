@@ -99,7 +99,7 @@
 
     <style name="add_flower_text">
         <item name="fontFamily">@font/tinos</item>
-        <item name="android:textColor">@color/gray</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textSize">18sp</item>
     </style>
 
@@ -233,5 +233,10 @@
         <item name="tabMode">fixed</item>
         <item name="tabSelectedTextColor">@color/black</item>
         <item name="tabTextColor">@color/gray</item>
+    </style>
+
+    <style name="roundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
     </style>
 </resources>

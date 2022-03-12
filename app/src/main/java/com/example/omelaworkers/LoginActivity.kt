@@ -23,7 +23,6 @@ import com.example.omelaworkers.florist.FloristActivity
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
-    var isNumberCorrect = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -38,19 +37,20 @@ class LoginActivity : AppCompatActivity() {
         }
         binding.show.setOnClickListener { showHidePass(binding.show, binding.registrationPassword) }
         binding.verifyButton.setOnClickListener {
-//            if (binding.editTextPhone.length() == 13 && binding.registrationPassword.text.isNotEmpty()){
-//                startActivity(Intent(this, CourierActivity::class.java))
-//            }
-            if (binding.editTextPhone.text.toString() == "+996700559950"){
-                startActivity(Intent(this, FloristActivity::class.java))
-            }
-            if (binding.editTextPhone.text.toString() == "+996707559950"){
-                startActivity(Intent(this, CourierActivity::class.java))
+            if (binding.editTextPhone.length() == 13 && binding.registrationPassword.text.isNotEmpty()) {
+                if (binding.editTextPhone.text.toString() == "+996700559950") {
+                    startActivity(Intent(this, FloristActivity::class.java))
+                }
+                if (binding.editTextPhone.text.toString() == "+996707559950") {
+                    startActivity(Intent(this, CourierActivity::class.java))
+                }
+            } else {
+                Toast.makeText(this, "Введите номер и пароль", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun showHidePass(view: ImageView, editText: EditText){
+    private fun showHidePass(view: ImageView, editText: EditText) {
         if (view.tag == "R.id.ic_visible") {
             editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
             view.setImageResource(R.drawable.ic_visibility)

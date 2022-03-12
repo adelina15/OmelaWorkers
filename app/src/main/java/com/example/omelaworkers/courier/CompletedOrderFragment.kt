@@ -11,38 +11,43 @@ import androidx.navigation.fragment.findNavController
 import com.example.omelaworkers.R
 import com.example.omelaworkers.courier.adapters.CurrentOrdersAdapter
 import com.example.omelaworkers.courier.adapters.FinishedOrdersAdapter
+import com.example.omelaworkers.courier.model.CurrentOrder
 import com.example.omelaworkers.courier.model.NewOrder
 import com.example.omelaworkers.databinding.FragmentCompletedOrderBinding
 import com.example.omelaworkers.databinding.FragmentCurrentOrderBinding
 
-class CompletedOrderFragment : Fragment(), Delegates.OrderClicked {
+class CompletedOrderFragment : Fragment(), Delegates.CurrentOrderClicked {
     private var _binding: FragmentCompletedOrderBinding? = null
     private val binding
         get() = _binding!!
-    private val completedOrdersAdapter = FinishedOrdersAdapter(this)
+    private val completedOrdersAdapter = CurrentOrdersAdapter(this)
 
     private val completedOrdersList by lazy {
         mutableListOf(
-            NewOrder(
+            CurrentOrder(
                 "Каныкей",
                 "+996 000 123 456",
                 "проспект Чингиза Айтматова 305, дом 45, кв. 45",
                 "г. Бишкек, проспект чуй 147/1.",
-                "11:37"
+                "11:37",
+                "23.02.22"
             ),
-            NewOrder(
+            CurrentOrder(
                 "Алена",
                 "+996 990 123 456",
                 "проспект Чингиза Айтматова 305, дом 45, кв. 45",
                 "г. Бишкек, проспект чуй 147/1.",
-                "11:37"
+                "11:37",
+                "22.02.22"
             ),
-            NewOrder(
+            CurrentOrder(
                 "Миша",
                 "+996 000 123 456",
                 "проспект Чингиза Айтматова 305, дом 45, кв. 45",
                 "г. Бишкек, проспект чуй 147/1.",
-                "11:37"
+                "11:37",
+                "21.02.22"
+
             )
         )
     }
@@ -82,7 +87,7 @@ class CompletedOrderFragment : Fragment(), Delegates.OrderClicked {
         _binding = null
     }
 
-    override fun onItemClick(order: NewOrder) {
+    override fun onItemClick(order: CurrentOrder) {
         val action = HistoryFragmentDirections.actionHistoryFragmentToOrderDetailsFragment("завершил")
         findNavController().navigate(action)
     }
