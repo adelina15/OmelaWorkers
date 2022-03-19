@@ -2,7 +2,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/floristHomeFragment"
+        android:id="@+id/florist_home_navigation"
         android:icon="@drawable/home_selector"
         android:title="@string/empty" />
     <item
@@ -10,7 +10,7 @@
         android:icon="@drawable/florist_history_selector"
         android:title="@string/empty" />
     <item
-        android:id="@+id/floristAccountFragment"
+        android:id="@+id/florist_acc_navigation"
         android:icon="@drawable/account_selector"
         android:title="@string/empty" />
 </menu>

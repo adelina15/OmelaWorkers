@@ -9,7 +9,6 @@ import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.omelaworkers.R
-import com.example.omelaworkers.courier.SalaryFragmentDirections
 import com.example.omelaworkers.courier.adapters.SalaryAdapter
 import com.example.omelaworkers.courier.model.Salary
 import com.example.omelaworkers.databinding.FragmentFloristSalaryBinding
@@ -69,8 +68,7 @@ class FloristSalaryFragment : Fragment() {
         with(binding.toolbar) {
             setNavigationIcon(com.example.omelaworkers.R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
-                val action = FloristSalaryFragmentDirections.actionFloristSalaryFragmentToFloristAccountFragment()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
             }
         }
         ArrayAdapter.createFromResource(

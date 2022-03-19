@@ -3,46 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/florist_navigation"
-    app:startDestination="@id/floristHomeFragment">
+    app:startDestination="@id/florist_home_navigation">
 
-    <fragment
-        android:id="@+id/floristHomeFragment"
-        android:name="com.example.omelaworkers.florist.FloristHomeFragment"
-        android:label="fragment_florist_home"
-        tools:layout="@layout/fragment_florist_home" >
-        <action
-            android:id="@+id/action_floristHomeFragment_to_addFlowerFragment"
-            app:destination="@id/addFlowerFragment" />
-    </fragment>
     <fragment
         android:id="@+id/floristHistoryFragment"
         android:name="com.example.omelaworkers.florist.FloristHistoryFragment"
         android:label="fragment_florist_history"
         tools:layout="@layout/fragment_florist_history" />
-    <fragment
-        android:id="@+id/floristAccountFragment"
-        android:name="com.example.omelaworkers.florist.FloristAccountFragment"
-        android:label="fragment_florist_account"
-        tools:layout="@layout/fragment_florist_account" >
-        <action
-            android:id="@+id/action_floristAccountFragment_to_floristSalaryFragment"
-            app:destination="@id/floristSalaryFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/addFlowerFragment"
-        android:name="com.example.omelaworkers.florist.AddFlowerFragment"
-        android:label="AddFlowerFragment" >
-        <action
-            android:id="@+id/action_addFlowerFragment_to_floristHomeFragment"
-            app:destination="@id/floristHomeFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/floristSalaryFragment"
-        android:name="com.example.omelaworkers.florist.FloristSalaryFragment"
-        android:label="fragment_florist_salary"
-        tools:layout="@layout/fragment_florist_salary" >
-        <action
-            android:id="@+id/action_floristSalaryFragment_to_floristAccountFragment"
-            app:destination="@id/floristAccountFragment" />
-    </fragment>
+    <include app:graph="@navigation/florist_acc_navigation" />
+    <include app:graph="@navigation/florist_home_navigation" />
 </navigation>

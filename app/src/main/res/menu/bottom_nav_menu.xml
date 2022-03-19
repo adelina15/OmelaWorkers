@@ -6,11 +6,11 @@
         android:icon="@drawable/home_selector"
         android:title="@string/empty" />
     <item
-        android:id="@+id/historyFragment"
+        android:id="@+id/courier_history_navigation"
         android:icon="@drawable/history_selector"
         android:title="@string/empty" />
     <item
-        android:id="@+id/accountFragment"
+        android:id="@+id/courier_acc_navigation"
         android:icon="@drawable/account_selector"
         android:title="@string/empty" />
 </menu>

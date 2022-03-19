@@ -87,8 +87,7 @@ class SalaryFragment : Fragment() {
         with(binding.toolbar) {
             setNavigationIcon(com.example.omelaworkers.R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
-                val action = SalaryFragmentDirections.actionSalaryFragmentToAccountFragment()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
             }
         }
         ArrayAdapter.createFromResource(

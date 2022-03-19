@@ -18,7 +18,6 @@ import coil.ImageLoader
 import coil.request.ImageRequest
 import coil.request.SuccessResult
 import com.example.omelaworkers.R
-import com.example.omelaworkers.courier.SalaryFragmentDirections
 import com.example.omelaworkers.databinding.FragmentAddFlowerBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -46,8 +45,7 @@ class AddFlowerFragment : Fragment() {
         with(binding.toolbar) {
             setNavigationIcon(com.example.omelaworkers.R.drawable.ic_back_arrow)
             setNavigationOnClickListener {
-                val action = AddFlowerFragmentDirections.actionAddFlowerFragmentToFloristHomeFragment()
-                findNavController().navigate(action)
+                findNavController().navigateUp()
             }
         }
         ArrayAdapter.createFromResource(

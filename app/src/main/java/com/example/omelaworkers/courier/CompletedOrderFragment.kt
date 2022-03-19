@@ -10,11 +10,8 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.omelaworkers.R
 import com.example.omelaworkers.courier.adapters.CurrentOrdersAdapter
-import com.example.omelaworkers.courier.adapters.FinishedOrdersAdapter
 import com.example.omelaworkers.courier.model.CurrentOrder
-import com.example.omelaworkers.courier.model.NewOrder
 import com.example.omelaworkers.databinding.FragmentCompletedOrderBinding
-import com.example.omelaworkers.databinding.FragmentCurrentOrderBinding
 
 class CompletedOrderFragment : Fragment(), Delegates.CurrentOrderClicked {
     private var _binding: FragmentCompletedOrderBinding? = null
@@ -88,7 +85,7 @@ class CompletedOrderFragment : Fragment(), Delegates.CurrentOrderClicked {
     }
 
     override fun onItemClick(order: CurrentOrder) {
-        val action = HistoryFragmentDirections.actionHistoryFragmentToOrderDetailsFragment("завершил")
+        val action = HistoryFragmentDirections.actionHistoryFragment2ToOrderDetailsFragment2("завершил")
         findNavController().navigate(action)
     }
 

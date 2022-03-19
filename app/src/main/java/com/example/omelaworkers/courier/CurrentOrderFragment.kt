@@ -71,7 +71,7 @@ class CurrentOrderFragment : Fragment(), Delegates.CurrentOrderClicked {
     }
 
     override fun onItemClick(order: CurrentOrder) {
-        val action = HistoryFragmentDirections.actionHistoryFragmentToOrderDetailsFragment(order.order_status)
+        val action = HistoryFragmentDirections.actionHistoryFragment2ToOrderDetailsFragment2(order.order_status)
         findNavController().navigate(action)
     }
 }

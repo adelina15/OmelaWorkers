@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/courier_history_navigation"
+    app:startDestination="@id/historyFragment">
+
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.omelaworkers.courier.HistoryFragment"
+        android:label="HistoryFragment" >
+        <action
+            android:id="@+id/action_historyFragment2_to_orderDetailsFragment2"
+            app:destination="@id/orderDetailsFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/orderDetailsFragment2"
+        android:name="com.example.omelaworkers.courier.OrderDetailsFragment"
+        android:label="OrderDetailsFragment" >
+        <argument
+            android:name="status"
+            app:argType="string" />
+    </fragment>
+</navigation>
