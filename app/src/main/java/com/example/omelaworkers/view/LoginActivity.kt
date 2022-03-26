@@ -64,6 +64,9 @@ class LoginActivity : AppCompatActivity() {
 //                else -> Toast.makeText(this, "ghghgh", Toast.LENGTH_SHORT).show()
             }
         }
+        userViewModel.errorMessage.observe(this){
+            Toast.makeText(this, "неверный пароль", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun showHidePass(view: ImageView, editText: EditText) {
@@ -77,5 +80,7 @@ class LoginActivity : AppCompatActivity() {
             view.tag = "R.id.ic_visible"
         }
     }
+
+
 
 }
