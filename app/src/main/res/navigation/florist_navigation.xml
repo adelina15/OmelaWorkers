@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/floristHistoryFragment"
-        android:name="com.example.omelaworkers.florist.FloristHistoryFragment"
+        android:name="com.example.omelaworkers.view.florist.FloristHistoryFragment"
         android:label="fragment_florist_history"
         tools:layout="@layout/fragment_florist_history" />
     <include app:graph="@navigation/florist_acc_navigation" />

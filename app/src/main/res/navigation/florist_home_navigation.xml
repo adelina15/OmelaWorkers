@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/floristHomeFragment"
-        android:name="com.example.omelaworkers.florist.FloristHomeFragment"
+        android:name="com.example.omelaworkers.view.florist.FloristHomeFragment"
         android:label="FloristHomeFragment" >
         <action
             android:id="@+id/action_floristHomeFragment_to_addFlowerFragment"
@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/addFlowerFragment"
-        android:name="com.example.omelaworkers.florist.AddFlowerFragment"
+        android:name="com.example.omelaworkers.view.florist.AddFlowerFragment"
         android:label="AddFlowerFragment" />
 </navigation>

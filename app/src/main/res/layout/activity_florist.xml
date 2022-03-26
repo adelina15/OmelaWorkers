@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".florist.FloristActivity">
+        tools:context=".view.florist.FloristActivity">
 
         <fragment
             android:id="@+id/florist_nav_fragment"

@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/historyFragment"
-        android:name="com.example.omelaworkers.courier.HistoryFragment"
+        android:name="com.example.omelaworkers.view.courier.HistoryFragment"
         android:label="HistoryFragment" >
         <action
             android:id="@+id/action_historyFragment2_to_orderDetailsFragment2"
@@ -14,7 +14,7 @@
     </fragment>
     <fragment
         android:id="@+id/orderDetailsFragment2"
-        android:name="com.example.omelaworkers.courier.OrderDetailsFragment"
+        android:name="com.example.omelaworkers.view.courier.OrderDetailsFragment"
         android:label="OrderDetailsFragment" >
         <argument
             android:name="status"

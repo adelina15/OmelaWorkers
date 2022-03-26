@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.example.omelaworkers.courier.AccountFragment"
+        android:name="com.example.omelaworkers.view.courier.AccountFragment"
         android:label="AccountFragment" >
         <action
             android:id="@+id/action_accountFragment_to_salaryFragment"
@@ -14,6 +14,6 @@
     </fragment>
     <fragment
         android:id="@+id/salaryFragment"
-        android:name="com.example.omelaworkers.courier.SalaryFragment"
+        android:name="com.example.omelaworkers.view.courier.SalaryFragment"
         android:label="SalaryFragment" />
 </navigation>
