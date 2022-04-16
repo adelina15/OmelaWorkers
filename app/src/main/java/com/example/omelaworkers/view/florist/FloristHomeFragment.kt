@@ -11,6 +11,9 @@ import com.example.omelaworkers.R
 import com.example.omelaworkers.databinding.FragmentFloristHomeBinding
 import com.example.omelaworkers.view.florist.adapter.FlowerAdapter
 import com.example.omelaworkers.data.model.Flower
+import com.example.omelaworkers.viewmodel.FlowersViewModel
+import com.example.omelaworkers.viewmodel.NewOrdersViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class FloristHomeFragment : Fragment() {
 
@@ -18,16 +21,7 @@ class FloristHomeFragment : Fragment() {
     private val binding
         get() = _binding!!
     private val flowersAdapter = FlowerAdapter()
-    private val flowersList by lazy {
-        mutableListOf(
-            Flower("роза розовая", 80,50, 500),
-            Flower("роза розовая", 80,50, 500),
-            Flower("роза розовая", 80,50, 500),
-            Flower("роза розовая", 80,50, 500),
-            Flower("роза розовая", 80,50, 500),
-            Flower("роза розовая", 80,50, 500)
-        )
-    }
+    private val flowersViewModel by viewModel<FlowersViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,13 +39,17 @@ class FloristHomeFragment : Fragment() {
             val action = FloristHomeFragmentDirections.actionFloristHomeFragmentToAddFlowerFragment()
             findNavController().navigate(action)
         }
+        lifecycle.addObserver(flowersViewModel)
+        init()
+        flowersViewModel.flowersLiveData.observe(viewLifecycleOwner){
+            flowersAdapter.setList(it.toList())
+        }
     }
 
     private fun init() {
         binding.apply {
             flowerRecyclerView.adapter = flowersAdapter
         }
-        flowersAdapter.setList(flowersList)
     }
 
     override fun onDestroyView() {

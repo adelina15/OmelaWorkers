@@ -18,17 +18,17 @@ class SoldFlowersFragment : Fragment() {
     private val soldFlowersAdapter = BouquetAdapter()
 
     private val soldFlowersList by lazy {
-        mutableListOf(
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-        )
+//        mutableListOf(
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//        )
     }
 
     override fun onCreateView(
@@ -44,7 +44,7 @@ class SoldFlowersFragment : Fragment() {
         binding.apply {
             soldFlowersRecyclerView.adapter = soldFlowersAdapter
         }
-        soldFlowersAdapter.setList(soldFlowersList)
+//        soldFlowersAdapter.setList(soldFlowersList)
     }
 
     override fun onDestroyView() {

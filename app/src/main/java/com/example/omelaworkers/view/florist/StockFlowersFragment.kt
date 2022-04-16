@@ -18,19 +18,19 @@ class StockFlowersFragment : Fragment() {
         get() = _binding!!
     private val stockFlowersAdapter = BouquetAdapter()
 
-    private val stockFlowersList by lazy {
-        mutableListOf(
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
-        )
-    }
+//    private val stockFlowersList by lazy {
+//        mutableListOf(
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//            Bouquet("ВРЕМЯ ЛЮБИТЬ", 8900, "шебби-шик", 890),
+//        )
+//    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -44,7 +44,7 @@ class StockFlowersFragment : Fragment() {
         binding.apply {
             stockFlowersRecyclerView.adapter = stockFlowersAdapter
         }
-        stockFlowersAdapter.setList(stockFlowersList)
+//        stockFlowersAdapter.setList(stockFlowersList)
     }
 
     override fun onDestroyView() {

@@ -1,16 +1,16 @@
 package com.example.omelaworkers.data.model
 
+import java.io.Serializable
+
 data class OrdersItem(
-    val addInformation: String,
     val address: String,
-    val bouquet: List<Any>,
-    val buyerName: String,
-    val buyerPhoneNumber: String,
-    val date: String,
-    val filial: String,
+    val bouquets: List<Bouquet>,
+    val customer: Customer,
+    val customerMoney: Int,
+    val customerName: String,
     val id: Int,
-    val payment: String,
-    val receiverName: String,
-    val receiverPhoneNumber: String,
-    val status: String
-)
+    val orderDate: String,
+    val status: String,
+    val suggestion: String,
+    val totalSum: Int
+): Serializable

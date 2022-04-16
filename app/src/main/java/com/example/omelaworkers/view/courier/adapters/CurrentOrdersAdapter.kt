@@ -1,31 +1,47 @@
 package com.example.omelaworkers.view.courier.adapters
 
+import android.icu.text.DateFormat
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.RecyclerView
 import com.example.omelaworkers.R
 import com.example.omelaworkers.view.courier.Delegates
 import com.example.omelaworkers.data.model.CurrentOrder
+import com.example.omelaworkers.data.model.OrdersItem
 import com.example.omelaworkers.databinding.CurrentOrderBinding
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
-class CurrentOrdersAdapter(private val currentOrderClicker: Delegates.CurrentOrderClicked) :
+class CurrentOrdersAdapter(private val currentOrderClicker: Delegates.OrderClicked) :
     RecyclerView.Adapter<CurrentOrdersAdapter.CurrentOrdersHolder>() {
 
-    private var list = mutableListOf<CurrentOrder>()
-    fun setList(list: MutableList<CurrentOrder>) {
-        this.list = list
+    private var list = listOf<OrdersItem>()
+
+    fun setList(newList: List<OrdersItem>){
+        list = newList
+        notifyDataSetChanged()
     }
 
     class CurrentOrdersHolder(item: View) : RecyclerView.ViewHolder(item) {
         val binding = CurrentOrderBinding.bind(item)
-        fun bind(order: CurrentOrder) = with(binding) {
-            status.text = order.order_status
-            newClientName.text = order.client_name
-            newClientAddress.text = order.client_address
-            newClientNumber.text = order.client_number
-            newOrderTime.text = order.order_time
-            newOrderBranch.text = order.branch_address
+        @RequiresApi(Build.VERSION_CODES.O)
+        fun bind(order: OrdersItem) = with(binding) {
+
+            status.text = when(order.status){
+                "COURIER_GO" -> "в пути"
+                "COURIER_TAKE" -> "забрал"
+                else -> "завершил"
+            }
+            newClientName.text = order.customerName
+            newClientAddress.text = order.address
+            newClientNumber.text = order.customer.phoneNumber
+//            val timeFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.VVV'Z'")
+            newOrderTime.text = order.orderDate
+//                LocalDate.parse(order.orderDate, timeFormat).toString()
+            newOrderBranch.text = "Киевская 12"
 //            button.setOnClickListener {
 //                if (status.text == "принял") {
 //                    button.apply {

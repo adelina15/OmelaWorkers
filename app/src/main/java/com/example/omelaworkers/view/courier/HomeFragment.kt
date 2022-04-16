@@ -9,8 +9,10 @@ import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import com.example.omelaworkers.R
 import com.example.omelaworkers.view.courier.adapters.NewOrdersAdapter
-import com.example.omelaworkers.data.model.NewOrder
+import com.example.omelaworkers.data.model.OrdersItem
 import com.example.omelaworkers.databinding.FragmentHomeBinding
+import com.example.omelaworkers.viewmodel.NewOrdersViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class HomeFragment : Fragment(), Delegates.OrderClicked {
 
@@ -18,31 +20,7 @@ class HomeFragment : Fragment(), Delegates.OrderClicked {
     private val binding
         get() = _binding!!
     private val newOrdersAdapter = NewOrdersAdapter(this)
-    private val newOrdersList by lazy {
-        mutableListOf(
-            NewOrder(
-                "Каныкей",
-                "+996 000 123 456",
-                "проспект Чингиза Айтматова 305, дом 45, кв. 45",
-                "г. Бишкек, проспект чуй 147/1.",
-                "11:37"
-            ),
-            NewOrder(
-                "Алена",
-                "+996 990 123 456",
-                "проспект Чингиза Айтматова 305, дом 45, кв. 45",
-                "г. Бишкек, проспект чуй 147/1.",
-                "11:37"
-            ),
-            NewOrder(
-                "Миша",
-                "+996 000 123 456",
-                "проспект Чингиза Айтматова 305, дом 45, кв. 45",
-                "г. Бишкек, проспект чуй 147/1.",
-                "11:37"
-            )
-        )
-    }
+    private val newOrdersViewModel by viewModel<NewOrdersViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,15 +28,22 @@ class HomeFragment : Fragment(), Delegates.OrderClicked {
     ): View? {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
-        init()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycle.addObserver(newOrdersViewModel)
+        init()
+        newOrdersViewModel.newOrdersLiveData.observe(viewLifecycleOwner){
+            newOrdersAdapter.setList(it.toList())
+        }
     }
 
     private fun init() {
         binding.apply {
             recyclerView.adapter = newOrdersAdapter
         }
-        newOrdersAdapter.setList(newOrdersList)
     }
 
     override fun onDestroyView() {
@@ -66,8 +51,8 @@ class HomeFragment : Fragment(), Delegates.OrderClicked {
         _binding = null
     }
 
-    override fun onItemClick(order: NewOrder) {
-        val action = HomeFragmentDirections.actionHomeFragmentToOrderDetailsFragment("новый заказ")
+    override fun onItemClick(order: OrdersItem) {
+        val action = HomeFragmentDirections.actionHomeFragmentToOrderDetailsFragment("новый заказ", order)
         findNavController().navigate(action)
     }
 }

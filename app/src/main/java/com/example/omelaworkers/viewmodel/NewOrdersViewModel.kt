@@ -5,9 +5,9 @@ import com.example.omelaworkers.data.model.OrdersItem
 import com.example.omelaworkers.data.repository.Repository
 import kotlinx.coroutines.launch
 
-class OrdersViewModel (private val repository: Repository): ViewModel(), DefaultLifecycleObserver {
+class NewOrdersViewModel (private val repository: Repository): ViewModel(), DefaultLifecycleObserver {
 
-    val ordersLiveData = MutableLiveData<ArrayList<OrdersItem>>()
+    val newOrdersLiveData = MutableLiveData<ArrayList<OrdersItem>>()
 
     override fun onCreate(owner: LifecycleOwner) {
         super.onCreate(owner)
@@ -16,10 +16,15 @@ class OrdersViewModel (private val repository: Repository): ViewModel(), Default
 
     fun getOrders() {
         viewModelScope.launch {
-            val response = repository.getAllOrders()
+            val response = repository.getNewOrders()
             if (response.isSuccessful){
-                ordersLiveData.postValue(response.body())
+                newOrdersLiveData.postValue(response.body())
             }
         }
+    }
+
+    fun changeStatus(id: Int?){
+        val status = "COURIER_TAKE_ORDER"
+        repository.changeStatus(id, status)
     }
 }

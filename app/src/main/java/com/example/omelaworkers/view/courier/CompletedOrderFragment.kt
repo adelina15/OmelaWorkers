@@ -11,43 +11,19 @@ import androidx.navigation.fragment.findNavController
 import com.example.omelaworkers.R
 import com.example.omelaworkers.view.courier.adapters.CurrentOrdersAdapter
 import com.example.omelaworkers.data.model.CurrentOrder
+import com.example.omelaworkers.data.model.OrdersItem
 import com.example.omelaworkers.databinding.FragmentCompletedOrderBinding
+import com.example.omelaworkers.viewmodel.ActiveOrdersViewModel
+import com.example.omelaworkers.viewmodel.FinishedOrdersViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class CompletedOrderFragment : Fragment(), Delegates.CurrentOrderClicked {
+class CompletedOrderFragment : Fragment(), Delegates.OrderClicked {
     private var _binding: FragmentCompletedOrderBinding? = null
     private val binding
         get() = _binding!!
     private val completedOrdersAdapter = CurrentOrdersAdapter(this)
+    private val finishedOrdersViewModel by viewModel<FinishedOrdersViewModel>()
 
-    private val completedOrdersList by lazy {
-        mutableListOf(
-            CurrentOrder(
-                "Каныкей",
-                "+996 000 123 456",
-                "проспект Чингиза Айтматова 305, дом 45, кв. 45",
-                "г. Бишкек, проспект чуй 147/1.",
-                "11:37",
-                "23.02.22"
-            ),
-            CurrentOrder(
-                "Алена",
-                "+996 990 123 456",
-                "проспект Чингиза Айтматова 305, дом 45, кв. 45",
-                "г. Бишкек, проспект чуй 147/1.",
-                "11:37",
-                "22.02.22"
-            ),
-            CurrentOrder(
-                "Миша",
-                "+996 000 123 456",
-                "проспект Чингиза Айтматова 305, дом 45, кв. 45",
-                "г. Бишкек, проспект чуй 147/1.",
-                "11:37",
-                "21.02.22"
-
-            )
-        )
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -71,12 +47,17 @@ class CompletedOrderFragment : Fragment(), Delegates.CurrentOrderClicked {
             // Apply the adapter to the spinner
             binding.orderSpinner.adapter = adapter
         }
+
+        lifecycle.addObserver(finishedOrdersViewModel)
+        init()
+        finishedOrdersViewModel.finishedOrdersLiveData.observe(viewLifecycleOwner){
+            completedOrdersAdapter.setList(it.toList())
+        }
     }
     private fun init() {
         binding.apply {
             completedOrdersRecyclerView.adapter = completedOrdersAdapter
         }
-        completedOrdersAdapter.setList(completedOrdersList)
     }
 
     override fun onDestroyView() {
@@ -84,8 +65,8 @@ class CompletedOrderFragment : Fragment(), Delegates.CurrentOrderClicked {
         _binding = null
     }
 
-    override fun onItemClick(order: CurrentOrder) {
-        val action = HistoryFragmentDirections.actionHistoryFragment2ToOrderDetailsFragment2("завершил")
+    override fun onItemClick(order: OrdersItem) {
+        val action = HistoryFragmentDirections.actionHistoryFragment2ToOrderDetailsFragment2("завершил", order)
         findNavController().navigate(action)
     }
 

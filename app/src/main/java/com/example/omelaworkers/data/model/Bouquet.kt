@@ -1,8 +1,14 @@
 package com.example.omelaworkers.data.model
 
+import java.io.Serializable
+
 data class Bouquet (
+    val createdAt: String,
+    val description: String,
+    val discount: Int,
+    val discountResult: Int? = null,
+    val id: Int,
     val name: String,
-    val price: Int,
-    val category: String,
-    val salary: Int
-    )
+    val photo: String,
+    val price: String,
+): Serializable

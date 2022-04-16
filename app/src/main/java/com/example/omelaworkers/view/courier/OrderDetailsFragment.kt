@@ -8,11 +8,14 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.omelaworkers.R
+import com.example.omelaworkers.data.model.Bouquet
 import com.example.omelaworkers.view.courier.adapters.DetailsAdapter
-import com.example.omelaworkers.data.model.OrderFlower
 import com.example.omelaworkers.databinding.FragmentOrderDetailsBinding
+import com.example.omelaworkers.viewmodel.NewOrdersViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
 class OrderDetailsFragment : Fragment() {
 
@@ -23,13 +26,8 @@ class OrderDetailsFragment : Fragment() {
         get() = _binding!!
 
     private val detailsAdapter = DetailsAdapter()
-    private val flowersList by lazy {
-        mutableListOf(
-            OrderFlower("ПРИКОСНОВЕНИЕ", R.drawable.cat_3, 8000, 15),
-            OrderFlower("ИСКРЕННОСТЬ", R.drawable.cat_3, 6800),
-            OrderFlower("ЧИСТОЕ СЕРДЦЕ", R.drawable.cat_3, 4000)
-        )
-    }
+    lateinit var flowersList: List<Bouquet>
+    private val newOrdersViewModel by viewModel<NewOrdersViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -50,71 +48,67 @@ class OrderDetailsFragment : Fragment() {
                 findNavController().navigateUp()
             }
         }
-        binding.status.text = args.status
-        if (binding.status.text == "новый заказ") {
-            binding.acceptButton.visibility = View.GONE
-            binding.statusButton.visibility = View.VISIBLE
-        }
-        if (binding.status.text == "завершил") {
-            binding.acceptButton.visibility = View.GONE
-        }
-        if (binding.status.text == "принял") {
-            binding.acceptButton.apply {
-                background = ContextCompat.getDrawable(
-                    context,
-                    R.drawable.button_yellow
-                )
-                isEnabled = true
-            }
-            binding.acceptButton.text = "забрал"
-        }
-        if (binding.status.text == "в пути") {
-            binding.acceptButton.apply {
-                background = ContextCompat.getDrawable(
-                    context,
-                    R.drawable.button_peach
-                )
-                isEnabled = true
-            }
-            binding.acceptButton.text = "доставил"
-        }
-        if (binding.status.text == "доставил") {
-            binding.acceptButton.apply {
-                background = ContextCompat.getDrawable(
-                    context,
-                    R.drawable.button_green
-                )
-                isEnabled = true
-            }
-            binding.acceptButton.text = "завершил"
-        }
-        binding.acceptButton.setOnClickListener {
-            when (binding.status.text) {
-                "принял" -> {
-                    binding.acceptButton.apply {
-                        background = ContextCompat.getDrawable(
-                            context,
-                            R.drawable.button_peach
-                        )
-                        isEnabled = true
-                    }
-                    binding.acceptButton.text = "доставил"
-                    binding.status.text = "в пути"
+        with(binding){
+            clientName.text = args.order.customerName
+            clientNumber.text = args.order.customer.phoneNumber
+            clientAddress.text = args.order.address
+            orderComment.text = args.order.suggestion
+            orderTotal.text = "${args.order.totalSum} c"
+//            courierPay.text =
+            status.text = args.status
+            if (status.text == "новый заказ") {
+                acceptButton.visibility = View.GONE
+                statusButton.visibility = View.VISIBLE
+                statusButton.setOnClickListener {
+                    newOrdersViewModel.changeStatus(args.order.id)
                 }
-                "в пути" -> {
-                    binding.acceptButton.apply {
-                        background = ContextCompat.getDrawable(
-                            context,
-                            R.drawable.button_green
-                        )
-                        isEnabled = true
-                    }
-                    binding.acceptButton.text = "завершил"
-                    binding.status.text = "доставил"
+            }
+            if (status.text == "завершил") {
+                acceptButton.visibility = View.GONE
+            }
+            if (status.text == "принял") {
+                acceptButton.apply { background = ContextCompat.getDrawable(context, R.drawable.button_yellow)
+                    isEnabled = true
                 }
-                "доставил" -> {
-                    binding.acceptButton.visibility = View.GONE
-                    binding.status.text = "завершил"
+                acceptButton.text = "забрал"
+            }
+            if (status.text == "в пути") {
+                acceptButton.apply {
+                    background = ContextCompat.getDrawable(context, R.drawable.button_peach)
+                    isEnabled = true
+                }
+                acceptButton.text = "доставил"
+            }
+            if (status.text == "доставил") {
+                acceptButton.apply { background = ContextCompat.getDrawable(context, R.drawable.button_green)
+                    isEnabled = true
+                }
+                acceptButton.text = "завершил"
+            }
+            acceptButton.setOnClickListener {
+                when (status.text) {
+                    "принял" -> {
+                        acceptButton.apply { background = ContextCompat.getDrawable(context, R.drawable.button_peach)
+                            isEnabled = true
+                        }
+                        acceptButton.text = "доставил"
+                        status.text = "в пути"
+                    }
+                    "в пути" -> {
+                        binding.acceptButton.apply {
+                            background = ContextCompat.getDrawable(
+                                context,
+                                R.drawable.button_green
+                            )
+                            isEnabled = true
+                        }
+                        binding.acceptButton.text = "завершил"
+                        binding.status.text = "доставил"
+                    }
+                    "доставил" -> {
+                        binding.acceptButton.visibility = View.GONE
+                        binding.status.text = "завершил"
+                    }
                 }
             }
         }
@@ -124,6 +118,7 @@ class OrderDetailsFragment : Fragment() {
         binding.apply {
             flowersRecyclerView.adapter = detailsAdapter
         }
+        flowersList = args.order.bouquets
         detailsAdapter.setList(flowersList)
     }
 

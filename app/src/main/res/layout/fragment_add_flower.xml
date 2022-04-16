@@ -124,6 +124,67 @@
                     app:layout_constraintTop_toBottomOf="@+id/heightEditText" />
 
                 <TextView
+                    android:id="@+id/textView18"
+                    style="@style/add_flower_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="количество"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/heightEditText" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_flowers1"
+                    style="@style/small_text"
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView23" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_flowers5"
+                    style="@style/small_text"
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_flowers4" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_flowers2"
+                    style="@style/small_text"
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_flowers1" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_flowers3"
+                    style="@style/small_text"
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_flowers2" />
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_flowers4"
+                    style="@style/small_text"
+                    android:layout_width="240dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_flowers3" />
+
+                <TextView
                     android:id="@+id/textView24"
                     style="@style/add_flower_text"
                     android:layout_width="wrap_content"
@@ -132,7 +193,7 @@
                     android:layout_marginTop="24dp"
                     android:text="@string/discount"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/contentEditText" />
+                    app:layout_constraintTop_toBottomOf="@+id/spinner_flowers5" />
 
                 <TextView
                     android:id="@+id/textView19"
@@ -173,7 +234,7 @@
                     android:background="@drawable/rounded_add_flower_et"
                     android:ems="10"
                     android:hint="@string/bouquet_diameter"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:padding="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
@@ -191,12 +252,87 @@
                     android:background="@drawable/rounded_add_flower_et"
                     android:ems="10"
                     android:hint="@string/bouquet_height"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:padding="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView22" />
+
+                <EditText
+                    android:id="@+id/flowersCount1"
+                    style="@style/small_text"
+                    android:layout_width="67dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/rounded_add_flower_et"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/spinner_flowers1"
+                    app:layout_constraintEnd_toEndOf="@+id/textView18"
+                    app:layout_constraintTop_toTopOf="@+id/spinner_flowers1" />
+
+                <EditText
+                    android:id="@+id/flowersCount2"
+                    style="@style/small_text"
+                    android:layout_width="67dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/rounded_add_flower_et"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/spinner_flowers2"
+                    app:layout_constraintEnd_toEndOf="@+id/flowersCount1"
+                    app:layout_constraintTop_toTopOf="@+id/spinner_flowers2" />
+
+                <EditText
+                    android:id="@+id/flowerCount3"
+                    style="@style/small_text"
+                    android:layout_width="67dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/rounded_add_flower_et"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/spinner_flowers3"
+                    app:layout_constraintEnd_toEndOf="@+id/flowersCount2"
+                    app:layout_constraintTop_toTopOf="@+id/spinner_flowers3" />
+
+                <EditText
+                    android:id="@+id/flowerCount5"
+                    style="@style/small_text"
+                    android:layout_width="67dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/rounded_add_flower_et"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/spinner_flowers5"
+                    app:layout_constraintEnd_toEndOf="@+id/flowerCount4"
+                    app:layout_constraintTop_toTopOf="@+id/spinner_flowers5" />
+
+                <EditText
+                    android:id="@+id/flowerCount4"
+                    style="@style/small_text"
+                    android:layout_width="67dp"
+                    android:layout_height="0dp"
+                    android:background="@drawable/rounded_add_flower_et"
+                    android:ems="10"
+                    android:gravity="center"
+                    android:hint="0"
+                    android:inputType="number"
+                    android:padding="10dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/spinner_flowers4"
+                    app:layout_constraintEnd_toEndOf="@+id/flowerCount3"
+                    app:layout_constraintTop_toTopOf="@+id/spinner_flowers4" />
 
                 <EditText
                     android:id="@+id/discountEditText"
@@ -209,7 +345,7 @@
                     android:background="@drawable/rounded_add_flower_et"
                     android:ems="10"
                     android:hint="@string/bouquet_discount"
-                    android:inputType="textPersonName"
+                    android:inputType="number"
                     android:padding="10dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
@@ -233,24 +369,6 @@
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-                <EditText
-                    android:id="@+id/contentEditText"
-                    style="@style/comments_text"
-                    android:layout_width="0dp"
-                    android:layout_height="120dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="6dp"
-                    android:layout_marginEnd="16dp"
-                    android:background="@drawable/rounded_add_flower_et"
-                    android:ems="10"
-                    android:hint="@string/bouquet_content"
-                    android:inputType="textPersonName"
-                    android:padding="10dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.0"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
                 <Spinner
                     android:id="@+id/spinner"

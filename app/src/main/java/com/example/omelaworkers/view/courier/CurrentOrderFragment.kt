@@ -10,56 +10,41 @@ import androidx.navigation.fragment.findNavController
 import com.example.omelaworkers.R
 import com.example.omelaworkers.view.courier.adapters.CurrentOrdersAdapter
 import com.example.omelaworkers.data.model.CurrentOrder
+import com.example.omelaworkers.data.model.OrdersItem
 import com.example.omelaworkers.databinding.FragmentCurrentOrderBinding
+import com.example.omelaworkers.viewmodel.ActiveOrdersViewModel
+import com.example.omelaworkers.viewmodel.NewOrdersViewModel
+import org.koin.android.viewmodel.ext.android.viewModel
 
-class CurrentOrderFragment : Fragment(), Delegates.CurrentOrderClicked {
+class CurrentOrderFragment : Fragment(), Delegates.OrderClicked {
 
     private var _binding: FragmentCurrentOrderBinding? = null
     private val binding
         get() = _binding!!
     private val currentOrdersAdapter = CurrentOrdersAdapter(this)
-    private val currentOrdersList by lazy {
-        mutableListOf(
-            CurrentOrder(
-                "Каныкей",
-                "+996 000 123 456",
-                "проспект Чингиза Айтматова 305, дом 45, кв. 45",
-                "г. Бишкек, проспект чуй 147/1.",
-                "11:37",
-                "принял"
-            ),
-            CurrentOrder(
-                "Алена",
-                "+996 990 123 456",
-                "проспект Чингиза Айтматова 305, дом 45, кв. 45",
-                "г. Бишкек, проспект чуй 147/1.",
-                "11:37",
-                "в пути"
-            ),
-            CurrentOrder(
-                "Миша",
-                "+996 000 123 456",
-                "проспект Чингиза Айтматова 305, дом 45, кв. 45",
-                "г. Бишкек, проспект чуй 147/1.",
-                "11:37",
-                "доставил"
-            )
-        )
-    }
+    private val activeOrdersViewModel by viewModel<ActiveOrdersViewModel>()
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_current_order, container, false)
-        init()
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        lifecycle.addObserver(activeOrdersViewModel)
+        init()
+        activeOrdersViewModel.activeOrdersLiveData.observe(viewLifecycleOwner){
+            currentOrdersAdapter.setList(it.toList())
+        }
     }
     private fun init() {
         binding.apply {
             currentOrdersRecyclerView.adapter = currentOrdersAdapter
         }
-        currentOrdersAdapter.setList(currentOrdersList)
     }
 
     override fun onDestroyView() {
@@ -67,8 +52,13 @@ class CurrentOrderFragment : Fragment(), Delegates.CurrentOrderClicked {
         _binding = null
     }
 
-    override fun onItemClick(order: CurrentOrder) {
-        val action = HistoryFragmentDirections.actionHistoryFragment2ToOrderDetailsFragment2(order.order_status)
+    override fun onItemClick(order: OrdersItem) {
+        val status = when(order.status){
+            "COURIER_GO" -> "в пути"
+            "COURIER_TAKE" -> "забрал"
+            else -> "завершил"
+        }
+        val action = HistoryFragmentDirections.actionHistoryFragment2ToOrderDetailsFragment2(status, order)
         findNavController().navigate(action)
     }
 }

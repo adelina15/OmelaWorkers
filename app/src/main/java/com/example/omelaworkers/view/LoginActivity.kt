@@ -18,7 +18,9 @@ import androidx.databinding.DataBindingUtil
 import com.auth0.android.jwt.Claim
 import com.auth0.android.jwt.JWT
 import com.example.omelaworkers.R
+import com.example.omelaworkers.data.UserPreferences
 import com.example.omelaworkers.databinding.ActivityLoginBinding
+import com.example.omelaworkers.utils.Roles
 import com.example.omelaworkers.view.courier.CourierActivity
 import com.example.omelaworkers.view.florist.FloristActivity
 import com.example.omelaworkers.viewmodel.UsersViewModel
@@ -27,54 +29,50 @@ import org.koin.android.viewmodel.ext.android.viewModel
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private val userViewModel by viewModel<UsersViewModel>()
-    lateinit var str: String
+    lateinit var sharedPreferences: UserPreferences
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_login)
-        //Make status bar white
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            val window: Window = window
-            val decorView: View = window.decorView
-            val wic = WindowInsetsControllerCompat(window, decorView)
-            wic.isAppearanceLightStatusBars = true
-            window.statusBarColor = Color.WHITE
-        }
         binding.show.setOnClickListener { showHidePass(binding.show, binding.registrationPassword) }
         binding.verifyButton.setOnClickListener {
-            getToken(binding.editTextPhone.text.toString(), binding.registrationPassword.text.toString())
+            getWorker(binding.editTextPhone.text.toString(), binding.registrationPassword.text.toString())
         }
+        sharedPreferences =  UserPreferences(this)
+
     }
 
-    private fun getToken(number: String, password: String) {
-        userViewModel.getToken(number, password)
-        userViewModel.tokens.observe(this){
-            val token: String = it.token
-            val jwt = JWT(token)
-            val claim: Claim = jwt.getClaim("role")
-            when (claim.asString().toString()) {
-                "Курьер" -> {
+    //get token and get role from it to open relevant activity
+    private fun getWorker(number: String, password: String) {
+        userViewModel.getWorker(number, password)
+        userViewModel.worker.observe(this){
+            sharedPreferences.saveUserNumber(number)
+            sharedPreferences.saveUserName(it.name)
+            sharedPreferences.saveUserPhoto(it.image)
+            when (it.role) {
+                Roles.COURIER.role -> {
                     val intent = Intent(this, CourierActivity::class.java)
                     startActivity(intent)
                 }
-                "Флорист" -> {
+                Roles.FLORIST.role -> {
                     val intent = Intent(this, FloristActivity::class.java)
                     startActivity(intent)
                 }
-//                else -> Toast.makeText(this, "ghghgh", Toast.LENGTH_SHORT).show()
             }
         }
         userViewModel.errorMessage.observe(this){
-            Toast.makeText(this, "неверный пароль", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, it, Toast.LENGTH_SHORT).show()
         }
     }
 
+    //shows and hides password
     private fun showHidePass(view: ImageView, editText: EditText) {
         if (view.tag == "R.id.ic_visible") {
             editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
             view.setImageResource(R.drawable.ic_visibility)
-            view.tag = "R.drawable.ic_visibility"
-        } else {
+                view.tag = "R.drawable.ic_visibility"
+            } else {
             editText.transformationMethod = PasswordTransformationMethod.getInstance()
             view.setImageResource(R.drawable.ic_visible)
             view.tag = "R.id.ic_visible"

@@ -5,15 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.omelaworkers.R
 import com.example.omelaworkers.databinding.FlowerInfoBinding
 import com.example.omelaworkers.data.model.Flower
 
 class FlowerAdapter: RecyclerView.Adapter<FlowerAdapter.FloweryHolder>()  {
 
-    private var list = mutableListOf<Flower>()
-    fun setList (list : MutableList<Flower>){
+    private var list = listOf<Flower>()
+    fun setList (list : List<Flower>){
         this.list = list
+        notifyDataSetChanged()
     }
 
     class FloweryHolder(item: View): RecyclerView.ViewHolder(item) {
@@ -23,7 +25,8 @@ class FlowerAdapter: RecyclerView.Adapter<FlowerAdapter.FloweryHolder>()  {
             name.text = flower.name
             flowerPrice.text = "${flower.price} c"
             flowerCount.text = "${flower.quantity} шт"
-            flowerHeight.text = "${flower.height} см"
+            Glide.with(itemView.context).load(flower.photo).into(flowerImage)
+//            flowerHeight.text = "${flower.height} см"
         }
     }
 

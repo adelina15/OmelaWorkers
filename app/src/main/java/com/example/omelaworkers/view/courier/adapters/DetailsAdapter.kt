@@ -5,24 +5,26 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.omelaworkers.R
-import com.example.omelaworkers.data.model.OrderFlower
+import com.example.omelaworkers.data.model.Bouquet
 import com.example.omelaworkers.databinding.FlowerItemBinding
 
 class DetailsAdapter(): RecyclerView.Adapter<DetailsAdapter.FlowersViewHolder>() {
 
-    private var list = mutableListOf<OrderFlower>()
-    fun setList (list : MutableList<OrderFlower>){
+    private var list = listOf<Bouquet>()
+    fun setList (list : List<Bouquet>){
         this.list = list
+        notifyDataSetChanged()
     }
 
     class FlowersViewHolder (item: View): RecyclerView.ViewHolder(item) {
         val binding = FlowerItemBinding.bind(item)
         @SuppressLint("SetTextI18n")
-        fun bind(flowers: OrderFlower) = with(binding) {
+        fun bind(flowers: Bouquet) = with(binding) {
             flowerName.text = flowers.name
             flowerDiscount.text = (if (flowers.discount == null) {""} else {"-${flowers.discount}%"})
-            flowerImage.setImageResource(flowers.image)
+            Glide.with(itemView.context).load(flowers.photo).into(flowerImage)
             flowerPrice.text = "${flowers.price} с"
         }
     }

@@ -19,5 +19,8 @@
         <argument
             android:name="status"
             app:argType="string" />
+        <argument
+            android:name="order"
+            app:argType="com.example.omelaworkers.data.model.OrdersItem" />
     </fragment>
 </navigation>

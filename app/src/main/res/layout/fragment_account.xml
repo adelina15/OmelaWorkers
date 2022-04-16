@@ -76,6 +76,7 @@
                     android:layout_width="105dp"
                     android:layout_height="105dp"
                     android:layout_marginTop="8dp"
+                    android:scaleType="centerCrop"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
@@ -168,6 +169,15 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/view6" />
+
+                <Spinner
+                    android:id="@+id/salarySpinner"
+                    style="@style/small_text"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/salaryButton" />
 
                 <ImageView
                     android:id="@+id/to_branches2"

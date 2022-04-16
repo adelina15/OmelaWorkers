@@ -1,10 +1,9 @@
 package com.example.omelaworkers.koin
 
-import com.example.omelaworkers.Constants
+import com.example.omelaworkers.utils.Constants
 import com.example.omelaworkers.data.Api
 import com.example.omelaworkers.data.repository.Repository
-import com.example.omelaworkers.viewmodel.OrdersViewModel
-import com.example.omelaworkers.viewmodel.UsersViewModel
+import com.example.omelaworkers.viewmodel.*
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.viewmodel.dsl.viewModel
@@ -22,8 +21,11 @@ val retrofitModule = module {
 }
 
 val viewModules = module {
-    viewModel { OrdersViewModel(repository = get()) }
+    viewModel { NewOrdersViewModel(repository = get()) }
     viewModel { UsersViewModel(repository = get()) }
+    viewModel { ActiveOrdersViewModel(repository = get()) }
+    viewModel { FinishedOrdersViewModel(repository = get()) }
+    viewModel { FlowersViewModel(repository = get()) }
 }
 
 fun getOkHttp(): OkHttpClient {

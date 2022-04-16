@@ -1,29 +1,33 @@
 package com.example.omelaworkers.view.courier.adapters
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.omelaworkers.R
 import com.example.omelaworkers.view.courier.Delegates
-import com.example.omelaworkers.data.model.NewOrder
+import com.example.omelaworkers.data.model.OrdersItem
 import com.example.omelaworkers.databinding.NewOrderBinding
 
 class NewOrdersAdapter(private val orderClicker: Delegates.OrderClicked): RecyclerView.Adapter<NewOrdersAdapter.NewOrdersHolder>() {
 
-    private var list = mutableListOf<NewOrder>()
-    fun setList (list : MutableList<NewOrder>){
-        this.list = list
+    private var list = listOf<OrdersItem>()
+
+    fun setList(newList: List<OrdersItem>){
+        list = newList
+        notifyDataSetChanged()
     }
 
     class NewOrdersHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = NewOrderBinding.bind(item)
-        fun bind(order: NewOrder) = with(binding) {
-            newClientName.text = order.client_name
-            newClientAddress.text = order.client_address
-            newClientNumber.text = order.client_number
-            newOrderTime.text = order.order_time
-            newOrderBranch.text = order.branch_address
+        @SuppressLint("SetTextI18n")
+        fun bind(order: OrdersItem) = with(binding) {
+            newClientName.text = order.customerName
+            newClientAddress.text = order.address
+            newClientNumber.text = order.customer.phoneNumber
+            newOrderTime.text = order.orderDate
+            newOrderBranch.text = "Киевская, 12"
         }
     }
 

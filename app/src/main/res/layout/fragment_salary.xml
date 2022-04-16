@@ -91,16 +91,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/salarySpinner" />
+            app:layout_constraintTop_toBottomOf="@+id/period" />
 
-        <Spinner
-            android:id="@+id/salarySpinner"
+        <TextView
+            android:id="@+id/period"
             style="@style/small_text"
-            android:layout_width="200dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/daysCount" />
+            android:text="@string/this_month"
+            app:layout_constraintStart_toStartOf="@+id/daysCount"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

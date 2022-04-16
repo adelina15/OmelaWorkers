@@ -22,8 +22,8 @@ class BouquetAdapter: RecyclerView.Adapter<BouquetAdapter.BouquetHolder>()  {
         fun bind(bouquet: Bouquet) = with(binding) {
             bouquetName.text = bouquet.name
             bouquetPrice.text = "${bouquet.price} c"
-            salary.text = "${bouquet.salary} c"
-            bouquetCategory.text = bouquet.category
+//            salary.text = "${bouquet.salary} c"
+//            bouquetCategory.text = bouquet.category
         }
 
     }

@@ -6,24 +6,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.omelaworkers.R
 import com.example.omelaworkers.view.courier.Delegates
-import com.example.omelaworkers.data.model.NewOrder
+import com.example.omelaworkers.data.model.OrdersItem
 import com.example.omelaworkers.databinding.NewOrderBinding
 
 class FinishedOrdersAdapter (private val orderClicker: Delegates.OrderClicked): RecyclerView.Adapter<FinishedOrdersAdapter.FinishedOrdersHolder>() {
 
-    private var list = mutableListOf<NewOrder>()
-    fun setList (list : MutableList<NewOrder>){
+    private var list = mutableListOf<OrdersItem>()
+    fun setList (list : MutableList<OrdersItem>){
         this.list = list
     }
 
     class FinishedOrdersHolder(item: View): RecyclerView.ViewHolder(item) {
         val binding = NewOrderBinding.bind(item)
-        fun bind(order: NewOrder) = with(binding) {
-            newClientName.text = order.client_name
-            newClientAddress.text = order.client_address
-            newClientNumber.text = order.client_number
-            newOrderTime.text = order.order_time
-            newOrderBranch.text = order.branch_address
+        fun bind(order: OrdersItem) = with(binding) {
+            newClientName.text = order.customerName
+            newClientAddress.text = order.address
+            newClientNumber.text = order.customer.phoneNumber
+//            newOrderTime.text = order.
+            newOrderBranch.text = "Киевская, 12"
         }
     }
 

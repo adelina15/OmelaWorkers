@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageView
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
@@ -22,6 +23,7 @@ import com.example.omelaworkers.databinding.FragmentAddFlowerBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.io.File
 
 class AddFlowerFragment : Fragment() {
     lateinit var imageUrl: Uri
@@ -30,6 +32,7 @@ class AddFlowerFragment : Fragment() {
     private var _binding: FragmentAddFlowerBinding? = null
     private val binding
         get() = _binding!!
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -59,37 +62,15 @@ class AddFlowerFragment : Fragment() {
             binding.spinner.adapter = adapter
         }
         binding.imageView.setOnClickListener {
-            openGalleryForImage()
+            selectImageFromGallery()
         }
         binding.imageView.clipToOutline
     }
-
-//    private val resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult())
-//    { result ->
-//        if (result.resultCode == Activity.RESULT_OK) {
-//            val data: Intent? = result.data
-//            imageUrl = data?.data!!
-//            binding.imageView.setImageURI(imageUrl)
-//            CoroutineScope(Dispatchers.IO).launch {
-//                image = getBitmap(imageUrl)
-//            }
-//        }
-//    }
-
-    private fun openGalleryForImage() {
-        val intent = Intent(Intent.ACTION_GET_CONTENT)
-        intent.type = "image/*"
-//        resultLauncher.launch(intent)
+    private val selectImageFromGalleryResult = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let { binding.imageView.setImageURI(uri) }
     }
 
-//    private suspend fun getBitmap(data: Uri?): Bitmap {
-//        val loading = ImageLoader(requireContext())
-//        val request = ImageRequest.Builder(requireContext())
-//            .data(data)
-//            .build()
-//        val result = (loading.execute(request) as SuccessResult).drawable
-//        return (result as BitmapDrawable).bitmap
-//    }
+    private fun selectImageFromGallery() = selectImageFromGalleryResult.launch("image/*")
 
     override fun onDestroyView() {
         super.onDestroyView()
